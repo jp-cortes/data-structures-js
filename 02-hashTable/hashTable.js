@@ -18,5 +18,33 @@ class HashhTable {
         this.data[address].push([key, value]);
         return this.data;
     }
+    get(key) {
+        const address = this.hashMethod(key);
+        const currentBucket = this.data[address];
+        if(currentBucket) {
+            for(let i = 0; i < currentBucket.length; i++) {
+                if(currentBucket[i][0] === key) {
+                    return currentBucket[i][1];
+                }
+            }
+        }
+        return undefined;
+    }
+    currentKeys() {
+        
+        const currentBucket = this.data;
+            for(let i = 0; i < currentBucket.length; i++) {
+                if(currentBucket[i]) {
+                    return currentBucket[i]
+                // for(let j = 0; j < currentBucket[i].length; j++ ) {
+                //     if(currentBucket[i][j]) {
+                //         return currentBucket[i][j][0];
+                //     }
+                        
+
+                //     }
+                }
+            }
+    }
 }
 const myhashTable = new HashhTable(50);
