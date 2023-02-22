@@ -1,4 +1,4 @@
-class HashhTable {
+class HashTable {
 
     constructor(size) {
         this.data = new Array(size);
@@ -30,21 +30,38 @@ class HashhTable {
         }
         return undefined;
     }
-    currentKeys() {
-        
-        const currentBucket = this.data;
-            for(let i = 0; i < currentBucket.length; i++) {
-                if(currentBucket[i]) {
-                    return currentBucket[i]
-                // for(let j = 0; j < currentBucket[i].length; j++ ) {
-                //     if(currentBucket[i][j]) {
-                //         return currentBucket[i][j][0];
-                //     }
-                        
+    myDelete(key) {
 
-                //     }
+        let item;
+        const address = this.hashMethod(key);
+        const currentBucket = this.data[address];
+        if(currentBucket) {
+            for(let i = 0; i < currentBucket.length; i++) {
+                if(currentBucket[i][0] === key) {
+                    item = [...currentBucket[i]]
+                    delete currentBucket[i];
+                    currentBucket.splice(i,1)
+                    return item;
                 }
             }
+        }
+        return undefined;
     }
+    currentKeys() {
+        let keys = [];
+        // const currentBucket = this.data;
+       
+            for(let i = 0; i < this.data.length; i++) {
+                if(this.data[i]) {
+                    for(let j = 0; j < this.data[i].length; j++) {
+                        if(this.data[i][j]) {
+                            keys.push(this.data[i][j][0]);
+                        }
+                    }
+                }
+            }
+            return keys;
+        }
+    
 }
-const myhashTable = new HashhTable(50);
+const myhashTable = new HashTable(50);
