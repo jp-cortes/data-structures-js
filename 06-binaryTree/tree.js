@@ -40,6 +40,19 @@ class BinarySearchTree {
             }
         }
     }
+    search(value, currentNode = this.root) {
+    
+        if(currentNode === null) {
+            console.log('There is no Node with that Value')
+            return null;
+        } else if( value < currentNode.value) {
+                    return this.search(value, currentNode.left);
+                  }
+                else if (value > currentNode.value) {
+                    return this.search(value, currentNode.right);
+                  }
+                return currentNode;
+    }
 }
 
 const tree = new BinarySearchTree();
